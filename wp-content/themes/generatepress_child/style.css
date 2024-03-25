@@ -1,0 +1,54 @@
+/*
+ Theme Name:   GeneratePress Child
+ Theme URI:    https://generatepress.com
+ Description:  Default GeneratePress child theme
+ Author:       Tom Usborne
+ Author URI:   https://tomusborne.com
+ Template:     generatepress
+ Version:      0.1
+*/
+
+ul.products.columns-4 {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product {
+    width: 100% !important;
+}
+
+.woocommerce .products ul::after,
+.woocommerce .products ul::before,
+.woocommerce ul.products::after,
+.woocommerce ul.products::before {
+    content: unset !important;
+}
+
+.woocommerce ul.products li.product a img {
+    min-height: 300px;
+    object-fit: cover !important;
+}
+
+
+/* For phones (portrait and landscape) */
+@media only screen and (min-width: 320px) {
+    ul.products.columns-4 {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+}
+
+/* For tablets (portrait and landscape) */
+@media only screen and (min-width: 768px) {
+    ul.products.columns-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    ul.products.columns-4 {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}

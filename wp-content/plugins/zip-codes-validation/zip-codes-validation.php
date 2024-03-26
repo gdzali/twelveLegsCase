@@ -50,18 +50,15 @@ class Custom_WooCommerce_Checkout {
         add_settings_field('custom_wc_postal_codes', 'Enter Comma-separated Postal Codes:', array($this, 'postal_codes_callback'), 'custom_wc_settings', 'custom_wc_section');
     }
 
-    // Section callback
     public function section_callback() {
         echo '<p>Enter the list of postal codes separated by commas.</p>';
     }
 
-    // Postal codes callback
     public function postal_codes_callback() {
         $postal_codes = get_option('custom_wc_postal_codes');
         echo '<input type="text" name="custom_wc_postal_codes" value="' . esc_attr($postal_codes) . '" />';
     }
 
-    // Validate postal codes
     public function validate_postal_codes() {
         $postal_codes = get_option('custom_wc_postal_codes');
 
@@ -76,7 +73,6 @@ class Custom_WooCommerce_Checkout {
         }
     }
 
-    // Enqueue JavaScript for frontend validation
     public function enqueue_scripts() {
         wp_enqueue_script('custom-wc-frontend-validation', plugin_dir_url(__FILE__) . 'js/frontend-validation.js', array('jquery'), '1.0', true);
         wp_localize_script('custom-wc-frontend-validation', 'custom_wc_frontend_validation_params', array(
@@ -85,7 +81,6 @@ class Custom_WooCommerce_Checkout {
         ));
     }
 
-    // AJAX handler to get allowed postcodes
     public function get_allowed_postcodes() {
         // Verify nonce
         if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'custom_wc_ajax_nonce' ) ) {
@@ -99,5 +94,4 @@ class Custom_WooCommerce_Checkout {
     }
 }
 
-// Initialize the plugin
 new Custom_WooCommerce_Checkout();
